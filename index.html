@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Vue Todo list</title>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+            integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="style.css">
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    </head>
+
+    <body>
+
+        <div id="app" class="container">
+
+            <div class="logo">
+                <img src="./img/logo.png" alt="">
+            </div>
+
+            
+
+            <div class="new-task">
+               
+
+                <input type="text" v-model="newTodo" placeholder="Nuova task">
+                <!-- HO AGGIUNTO UN EVENTO AL TAG BUTTON PER POTER AGGIUNGERE UN ALTRO ELEMENTO DELLA MIA LISTA -->
+                <!-- PER POTER FARE TUTTO CIò HO BISOGNO DI CREARE UNA FUNZIONE ALL' INTERNO DEL MIO JS -->
+                <button @click="addTodo()"> 
+                    Aggiungi
+                </button>
+            </div>
+
+            <div class="tasks-container">
+                <!-- UTILIZZO UNA DIRETTIVA VUE IN QUESTO CASO IL V-IF ,SE C'è ALMENO UN ELEMENTO NELLA MIA LISTA -->
+                <!-- IO PROCEDO CON LA MIA LISTA DI COSE DA FARE ALTRIMENTI HAI FATTO IL TUO DOVERE -->
+                <!-- COME PROCEDERE?NEL MIO "LI" USO IL V-FOR CON ELEMENTI E INDICI NEL MIO ARRAY -->
+                <!-- AL MOMENTO DEL CLICK NELLA MIA ICONA IO RIMUOVO L ELEMENTO ,FACENDO CIO HO BISOGNO DI CREARE UN ALTRA FUNZIONE -->
+                <ul v-if="todos.length > 0">
+                    <!-- ALL INTERNO DEL MIO "LI" CREARE UN EVENTO CLICK CHE MI SERVE A BARRARE L ELEMENTO CHE HO CLICCATO -->
+                    <!-- CREO UNA CLASSE DINAMICA-->
+                    <li class="task   " :class="{text:done[index]}" v-for="(element, index) in todos" @click="done[index] = !done[index]" >
+                        {{ element }}
+
+                        <i class="fas fa-times" @click="removeTodo(index)"></i>
+                    </li>
+                </ul>
+                
+                <h2 v-else>
+                    Complimenti, hai fatto il tuo dovere!
+                </h2>
+            </div>
+
+        </div>
+
+        
+        <script type="text/javascript" src="script.js"></script>
+    </body>
+
+</html>
